@@ -1,0 +1,4 @@
+flask
+flask-mysqldb
+flask-bcrypt
+flask-session

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ car.Brand }} {{ car.Name }} - Book Test Drive</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='book_testdrive.css') }}">
+</head>
+<body>
+  <div class="car-detail-container">
+    <h1>{{ car.Brand }} {{ car.Name }}</h1>
+    <p><strong>Model:</strong> {{ car.Model }}</p>
+    <p><strong>Fuel Type:</strong> {{ car.Fuel_Type }}</p>
+    <p><strong>Transmission:</strong> {{ car.Transmission }}</p>
+    <p><strong>Price:</strong> ₹{{ "{:,.2f}".format(car.Price) }}</p>
+    <p><strong>Stock Available:</strong> {{ car.Stock }}</p>
+
+    <h2>Showroom Details</h2>
+    <p><strong>Name:</strong> {{ showroom.Name }}</p>
+    <p><strong>Location:</strong> {{ showroom.Location }}</p>
+    <p><strong>Contact:</strong> {{ showroom.Contact }}</p>
+
+    {% if car.Stock > 0 %}
+    <form action="/confirm_booking/{{ car.Car_ID }}" method="POST" class="test-drive-form">
+      <label for="date">Choose a date:</label>
+      <input type="date" id="date" name="date" required>
+
+      <label for="time">Choose a time:</label>
+      <input type="time" id="time" name="time" required>
+
+      <button type="submit" class="btn">Confirm Booking</button>
+    </form>
+    {% else %}
+    <p style="color: red; font-weight: bold;">Out of stock - Booking not available.</p>
+    {% endif %}
+
+    <a href="/customer_home" class="btn back">Back to Home</a>
+  </div>
+</body>
+</html>

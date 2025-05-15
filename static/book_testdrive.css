@@ -1,0 +1,98 @@
+/* book_testdrive.css */
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f2f5f7;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+.car-detail-container {
+  max-width: 800px;
+  margin: 40px auto;
+  background: #fff;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+  color: #2c3e50;
+  margin-bottom: 15px;
+}
+
+p {
+  font-size: 16px;
+  margin: 8px 0;
+}
+
+strong {
+  color: #34495e;
+}
+
+.test-drive-form {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+label {
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #2d3436;
+}
+
+input[type="date"],
+input[type="time"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: #f9f9f9;
+  transition: border 0.3s;
+}
+
+input[type="date"]:focus,
+input[type="time"]:focus {
+  border-color: #3498db;
+  outline: none;
+}
+
+.btn {
+  padding: 12px 20px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  text-decoration: none;
+  text-align: center;
+}
+
+.btn:hover {
+  background-color: #2980b9;
+}
+
+.btn.back {
+  display: inline-block;
+  margin-top: 25px;
+  background-color: #7f8c8d;
+}
+
+.btn.back:hover {
+  background-color: #636e72;
+}
+
+@media screen and (max-width: 600px) {
+  .car-detail-container {
+    padding: 20px;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}

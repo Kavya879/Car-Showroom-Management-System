@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard - Car Showroom</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin_home.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <h1>Admin Dashboard</h1>
+        <div class="nav-links">
+            <a href="/admin/Manage_Cars">Manage Cars</a>
+            <a href="/admin/manage_showrooms">Manage Showrooms</a>
+            <a href="/admin/manage_test">Test Drive Bookings</a>
+            <a href="/admin/service_requests">Service Requests</a>
+            <a href="/admin/manage_user">Users</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </div>
+
+    <div class="dashboard">
+        <div class="card">
+            <h2>Total Cars</h2>
+            <p>{{ total_cars }}</p>
+        </div>
+        <div class="card">
+            <h2>Test Drive Bookings</h2>
+            <p>{{ total_bookings }}</p>
+        </div>
+        <div class="card">
+            <h2>Service Requests</h2>
+            <p>{{ total_services }}</p>
+        </div>
+        <div class="card">
+            <h2>Total Sales</h2>
+            <p>{{ total_sales }}</p>
+        </div>
+    </div>
+</body>
+</html>

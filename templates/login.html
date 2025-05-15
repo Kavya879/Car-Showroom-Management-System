@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Car Showroom Login</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+
+</head>
+<body>
+  <div class="login-container">
+    <h2>Car Showroom Login</h2>
+    <form action="/login" method="POST">
+      <div class="input-group">
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" required placeholder="Enter your email">
+      </div>
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" required placeholder="Enter your password">
+      </div>
+      <button type="submit">Login</button>
+      <p class="register-link">Don't have an account? <a href="/register">Register</a></p>
+    </form>
+  </div>
+</body>
+</html>

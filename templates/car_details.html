@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ car.Brand }} {{ car.Name }} Details</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='car_details.css') }}">
+</head>
+<body>
+  <div class="car-detail-container">
+    <h1>{{ car.Brand }} {{ car.Name }}</h1>
+    <p><strong>Model:</strong> {{ car.Model }}</p>
+    <p><strong>Fuel Type:</strong> {{ car.Fuel_Type }}</p>
+    <p><strong>Transmission:</strong> {{ car.Transmission }}</p>
+    <p><strong>Price:</strong> ₹{{ "{:,.2f}".format(car.Price) }}</p>
+    <p><strong>Stock Available:</strong> {{ car.Stock }}</p>
+
+    <div class="action-buttons">
+      <a href="/book_test_drive/{{ car.Car_ID }}" class="btn">Book Test Drive</a>
+      <a href="/buy_now/{{ car.Car_ID }}" class="btn buy">Buy Now</a>
+      <a href="/customer/home" class="btn">Back</a>
+    </div>
+  </div>
+</body>
+</html>

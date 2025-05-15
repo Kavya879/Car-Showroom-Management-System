@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Request Service</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='request_service.css') }}">
+</head>
+
+<body>
+  <h1>Request a Car Service</h1>
+
+  <form action="/submit_service_request" method="POST">
+    <label for="car_id">Select Car:</label>
+    <select name="car_id" id="car_id" required>
+      <option value="">--Select a Car--</option>
+      {% for car in cars %}
+      <option value="{{ car.Car_ID }}">
+        {{ car.Brand }} {{ car.Model }} - {{ car.Fuel_Type }}, {{ car.Transmission }}
+      </option>
+      {% endfor %}
+    </select>
+
+    <br><br>
+
+    <label for="description">Service Description:</label><br>
+    <textarea name="description" id="description" rows="4" cols="50" required></textarea>
+
+    <br><br>
+
+    <button type="submit">Submit Request</button>
+  </form>
+
+  <br>
+  <a href="/customer/home">Back to Home</a>
+</body>
+</html>

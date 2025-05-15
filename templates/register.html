@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Register - Car Showroom</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='register.css') }}">
+</head>
+<body>
+  <div class="register-container">
+    <h2> Register Account</h2>
+    <form action="/register" method="POST">
+      <div class="input-group">
+        <label for="name">Full Name</label>
+        <input type="text" name="name" id="name" required placeholder="Enter your full name">
+      </div>
+
+      <div class="input-group">
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" required placeholder="Enter your email">
+      </div>
+
+      <div class="input-group">
+        <label for="phone">Phone</label>
+        <input type="tel" name="phone" id="phone" required placeholder="Enter your phone number" maxlength="15">
+      </div>
+
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" required placeholder="Create a password">
+      </div>
+
+      <div class="input-group">
+        <label for="confirm_password">Confirm Password</label>
+        <input type="password" name="confirm_password" id="confirm_password" required placeholder="Confirm your password">
+      </div>
+
+      <button type="submit">Register</button>
+      <p class="login-link">Already have an account? <a href="/login">Login</a></p>
+    </form>
+  </div>
+</body>
+</html>

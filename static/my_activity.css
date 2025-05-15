@@ -1,0 +1,114 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f2f4f8;
+  margin: 0;
+  padding: 0;
+}
+
+.dashboard-container {
+  max-width: 1000px;
+  margin: 30px auto;
+  padding: 20px;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 20px 25px;
+  margin-bottom: 30px;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+}
+
+.card h2 {
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+li {
+  background-color: #f9fafb;
+  border-left: 5px solid #4a90e2;
+  margin-bottom: 15px;
+  padding: 15px;
+  border-radius: 8px;
+  position: relative;
+}
+
+.cancel-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background-color: #ff4d4f;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+
+.cancel-btn:hover {
+  background-color: #d9363e;
+}
+
+.status {
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.status.pending {
+  color: #f0ad4e;
+}
+.status.confirmed {
+  color: #28a745;
+}
+.status.completed {
+  color: #007bff;
+}
+
+.empty {
+  color: #777;
+  font-style: italic;
+  margin-left: 10px;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 20px 25px;
+  margin-bottom: 30px;
+}
+
+.top-bar h1 {
+  margin: 0;
+  font-size: 2rem;
+  color: #2c3e50;
+}
+
+.back-btn {
+  background-color: #4a90e2;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: background-color 0.3s ease;
+}
+
+.back-btn:hover {
+  background-color: #3a78c0;
+}
+

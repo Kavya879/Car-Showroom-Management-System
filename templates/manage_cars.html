@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage Cars - Admin</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='manage_cars.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <h1>Manage Cars</h1>
+        <div class="nav-links">
+            <a href="/admin">Dashboard</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Add New Car</h2>
+        <form class="car-form" action="/admin/add_car" method="POST">
+            <input type="text" name="brand" placeholder="Brand" required>
+            <input type="text" name="model" placeholder="Model" required>
+            <input type="text" name="fuel_type" placeholder="Fuel Type" required>
+            <input type="text" name="transmission" placeholder="Transmission" required>
+            <input type="number" name="price" placeholder="Price" required>
+            <input type="number" name="stock" placeholder="Stock" required>
+            <button type="submit">Add Car</button>
+        </form>
+
+        <h2>All Cars</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th><th>Brand</th><th>Model</th><th>Fuel</th>
+                    <th>Transmission</th><th>Price</th><th>Stock</th><th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for car in cars %}
+                <tr>
+                    <td>{{ car.Car_ID }}</td>
+                    <td>{{ car.Brand }}</td>
+                    <td>{{ car.Model }}</td>
+                    <td>{{ car.Fuel_Type }}</td>
+                    <td>{{ car.Transmission }}</td>
+                    <td>{{ car.Price }}</td>
+                    <td>{{ car.Stock }}</td>
+                    <td>
+                        <form method="POST" action="/admin/update_stock/{{ car.Car_ID }}" style="display:inline;">
+                            <input type="hidden" name="action" value="increase">
+                            <button type="submit">+</button>
+                        </form>
+                        <form method="POST" action="/admin/update_stock/{{ car.Car_ID }}" style="display:inline;">
+                            <input type="hidden" name="action" value="decrease">
+                            <button type="submit">-</button>
+                        </form>
+                        <a class="edit-btn" href="/admin/edit_car/{{ car.Car_ID }}">Edit</a>
+                        <a class="delete-btn" href="/admin/delete_car/{{ car.Car_ID }}" onclick="return confirm('Delete this car?')">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

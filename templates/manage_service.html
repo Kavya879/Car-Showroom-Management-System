@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Service Requests</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='manage_service.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <h1>Admin Panel - Manage Service Requests</h1>
+        <div class="nav-links">
+            <a href="/admin">Dashboard</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>All Service Requests</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Request ID</th>
+                    <th>User</th>
+                    <th>Car</th>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for r in requests %}
+                <tr>
+                    <td>{{ r.Request_ID }}</td>
+                    <td>{{ r.Username }}</td>
+                    <td>{{ r.CarName }}</td>
+                    <td>{{ r.Request_Date }}</td>
+                    <td>{{ r.Description }}</td>
+                    <td>
+                        <form action="/admin/update_service_status/{{ r.Request_ID }}" method="POST">
+                            <select name="status">
+                                {% for s in ["Pending", "In Progress", "Completed", "Cancelled"] %}
+                                    <option value="{{ s }}" {% if s == r.Status %}selected{% endif %}>{{ s }}</option>
+                                {% endfor %}
+                            </select>
+                            <button type="submit">Update</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="/admin/delete_service/{{ r.Request_ID }}" method="POST" onsubmit="return confirm('Delete this request?');">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="/admin" class="back-btn">← Back to Dashboard</a>
+    </div>
+</body>
+</html>

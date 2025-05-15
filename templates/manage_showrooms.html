@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage Showrooms</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='manage_showrooms.css') }}">
+</head>
+
+<body>
+    <div class="navbar">
+        <h1>Admin Panel - Manage Showrooms</h1>
+        <div class="nav-links">
+            <a href="/logout">Logout</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Showroom Summary</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Showroom ID</th>
+                    <th>Name</th>
+                    <th>Location</th>
+                    <th>Phone</th>
+                    <th>Total Cars</th>
+                    <th>Total Orders</th>
+                    <th>Pending Services</th>
+                    <th>Revenue (₹)</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for showroom in showrooms %}
+                <tr>
+                    <td>{{ showroom.Showroom_ID }}</td>
+                    <td>{{ showroom.Name }}</td>
+                    <td>{{ showroom.Location }}</td>
+                    <td>{{ showroom.Contact }}</td>
+                    <td>{{ showroom.total_cars }}</td>
+                    <td>{{ showroom.total_orders }}</td>
+                    <td>{{ showroom.pending_services }}</td>
+                    <td>{{ showroom.revenue }}</td>
+                    <td>
+                        <form action="/admin/delete_showroom/{{ showroom.Showroom_ID }}" method="POST" style="display:inline;">
+                            <button type="submit" onclick="return confirm('Delete this showroom?')">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h2>Add New Showroom</h2>
+        <form action="/admin/add_showroom" method="POST">
+            <input type="text" name="name" placeholder="Showroom Name" required>
+            <input type="text" name="location" placeholder="Location" required>
+            <input type="text" name="Contact" placeholder="Phone" required>
+            <button type="submit">Add Showroom</button>
+        </form>
+
+        <a href="/admin" class="back-btn">← Back to Admin Dashboard</a>
+    </div>
+</body>
+</html>

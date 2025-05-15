@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='my_activity.css') }}">
+</head>
+<body>
+  <div class="dashboard-container">
+
+    <div class="top-bar">
+      <h1>MY DASHBOARD</h1>
+      <a href="/customer/home" class="back-btn">⬅️ Back</a>
+    </div>
+
+    <section class="card">
+      <h2>🚗 Test Drive Bookings</h2>
+      {% if testdrives %}
+        <ul>
+          {% for t in testdrives %}
+            <li>
+              <strong>{{ t.Brand }} {{ t.Model }}</strong><br>
+              📅 {{ t.Booking_Date }} ⏰ {{ t.Booking_Time }}<br>
+              Status: <span class="status {{ t.Status|lower }}">{{ t.Status }}</span>
+              <a href="/delete_testdrive/{{ t.Booking_ID }}" class="cancel-btn">❌ Cancel</a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="empty">No test drives booked.</p>
+      {% endif %}
+    </section>
+
+    <section class="card">
+      <h2>🔧 Service Requests</h2>
+      {% if services %}
+        <ul>
+          {% for s in services %}
+            <li>
+              <strong>{{ s.Brand }} {{ s.Model }}</strong><br>
+              📅 {{ s.Request_Date }}<br>
+              🛠️ {{ s.Description }}<br>
+              Status: <span class="status {{ s.Status|lower }}">{{ s.Status }}</span>
+              <a href="/delete_service/{{ s.Request_ID }}" class="cancel-btn">❌ Cancel</a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="empty">No service requests submitted.</p>
+      {% endif %}
+    </section>
+
+    <section class="card">
+      <h2>🛒 Cars Purchased</h2>
+      {% if purchases %}
+        <ul>
+          {% for p in purchases %}
+            <li>
+              <strong>{{ p.Brand }} {{ p.Model }}</strong><br>
+              📅 {{ p.Sale_Date }}<br>
+              💳 {{ p.Payment_Mode }} — ₹{{ "{:,.2f}".format(p.Amount) }}
+              <a href="/delete_purchase/{{ p.Sale_ID }}" class="cancel-btn">❌ Remove</a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="empty">No cars purchased yet.</p>
+      {% endif %}
+    </section>
+
+  </div>
+</body>
+</html>

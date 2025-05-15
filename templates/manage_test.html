@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Test Drives</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='manage_test.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <h1>Admin Panel - Manage Test Drive Bookings</h1>
+        <div class="nav-links">
+            <a href="/admin">Dashboard</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>All Bookings</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Booking ID</th>
+                    <th>User</th>
+                    <th>Car</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for b in bookings %}
+                <tr>
+                    <td>{{ b.Booking_ID }}</td>
+                    <td>{{ b.user_name }}</td>
+                    <td>{{ b.car_name }}</td>
+                    <td>{{ b.Booking_Date }}</td>
+                    <td>{{ b.Booking_Time }}</td>
+                    <td>
+                        <form action="/admin/update_booking_status/{{ b.Booking_ID }}" method="POST">
+                            <select name="status">
+                                {% for s in ["Pending", "Confirmed", "Completed", "Cancelled"] %}
+                                    <option value="{{ s }}" {% if s == b.Status %}selected{% endif %}>{{ s }}</option>
+                                {% endfor %}
+                            </select>
+                            <button type="submit">Update</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="/admin/delete_booking/{{ b.Booking_ID }}" method="POST" onsubmit="return confirm('Delete this booking?');">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="/admin" class="back-btn">← Back to Dashboard</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Car</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin_style.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <h1>Edit Car</h1>
+        <a href="/admin/Manage_Cars">Back</a>
+    </div>
+    <div class="container">
+        <form class="car-form" method="POST">
+            <input type="text" name="brand" value="{{ car.Brand }}" required>
+            <input type="text" name="model" value="{{ car.Model }}" required>
+            <input type="text" name="fuel_type" value="{{ car.Fuel_Type }}" required>
+            <input type="text" name="transmission" value="{{ car.Transmission }}" required>
+            <input type="number" name="price" value="{{ car.Price }}" required>
+            <input type="number" name="stock" value="{{ car.Stock }}" required>
+            <button type="submit">Update Car</button>
+        </form>
+    </div>
+</body>
+</html>

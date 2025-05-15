@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Customer Home - AutoDealership</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="{{ url_for('static', filename='customer_home.css') }}">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">AutoDealership</div>
+    <div class="nav-links">
+      <a href="#">Home</a>
+      <a href="/my_activity">My Activity</a>
+      <a href="/request_service">Request a service</a>
+      <a href="/login" class="logout-button">Logout</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <h1>Find Your Dream Car</h1>
+    <p>Explore our extensive collection of premium vehicles</p>
+  </header>
+
+
+<!-- Car Listings -->
+<section class="car-listings">
+  <h2>Available Cars</h2>
+  <div class="car-list">
+    {% if cars %}
+      {% for car in cars %}
+        <div class="car-item card">
+          <div class="image">
+            <img 
+              src="https://source.unsplash.com/400x300/?{{ car.Brand }}-{{ car.Name }}-car" 
+              alt="{{ car.Brand }} {{ car.Name }}" 
+              class="car-img"
+            />
+          </div>
+          <h3>{{ car.Brand }} {{ car.Name }}</h3>
+          <p>${{ "{:,.2f}".format(car.Price) }}</p>
+          <p>{{ car.Model }} | {{ car.Mileage if car.Mileage else 'N/A' }} miles</p>
+          <p><strong>Fuel Type:</strong> {{ car.Fuel_Type }}</p>
+          <p><strong>Transmission:</strong> {{ car.Transmission }}</p>
+          <p><strong>Stock Available:</strong> {{ car.Stock }}</p>
+        <a href="{{ url_for('view_car', car_id=car.Car_ID) }}" class="btn">View Details</a>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p>No cars available currently.</p>
+    {% endif %}
+  </div>
+
+
+</section>

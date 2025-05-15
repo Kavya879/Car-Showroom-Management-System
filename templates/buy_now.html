@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Buy {{ car.Brand }} {{ car.Model }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='buy_now.css') }}">
+</head>
+
+<body>
+    <h2>Buy {{ car.Brand }} {{ car.Model }}</h2>
+
+    <p><strong>Fuel:</strong> {{ car.Fuel_Type }}</p>
+    <p><strong>Transmission:</strong> {{ car.Transmission }}</p>
+    <p><strong>Price:</strong> ₹{{ car.Price }}</p>
+    <p><strong>Showroom:</strong> {{ showroom.Name }} - {{ showroom.Location }}</p>
+
+    <form method="POST">
+        <label for="payment_mode">Payment Mode:</label>
+        <select name="payment_mode" required>
+            <option value="">Select</option>
+            <option value="Cash">Cash</option>
+            <option value="Credit Card">Credit Card</option>
+            <option value="UPI">UPI</option>
+            <option value="Net Banking">Net Banking</option>
+        </select>
+        <br><br>
+
+        <input type="hidden" name="amount" value="{{ car.Price }}">
+
+        <button type="submit">Confirm Purchase</button>
+    </form>
+
+    <br>
+    <a href="/customer/home">Back to Home</a>
+</body>
+</html>
