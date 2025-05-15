@@ -42,7 +42,7 @@
             />
           </div>
           <h3>{{ car.Brand }} {{ car.Name }}</h3>
-          <p>${{ "{:,.2f}".format(car.Price) }}</p>
+          <p>₹{{ "{:,.2f}".format(car.Price) }}</p>
           <p>{{ car.Model }} | {{ car.Mileage if car.Mileage else 'N/A' }} miles</p>
           <p><strong>Fuel Type:</strong> {{ car.Fuel_Type }}</p>
           <p><strong>Transmission:</strong> {{ car.Transmission }}</p>

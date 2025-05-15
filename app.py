@@ -7,6 +7,13 @@ from flask import render_template_string
 
 
 app = Flask(__name__)
+@app.before_request
+def require_login():
+    allowed_routes = ['login', 'show_login', 'register', 'show_register', 'static']  
+    
+    if request.endpoint not in allowed_routes and "user_id" not in session:
+        return redirect("/login")
+
 app.secret_key = "your_secret_key"
 bcrypt = Bcrypt(app)
 
@@ -116,14 +123,14 @@ def logout():
 
 
 @app.route("/customer/home")
-# @customer_required
+@customer_required
 def customer_home():
     cursor.execute("SELECT * FROM Cars")
     cars = cursor.fetchall()
     return render_template('customer_home.html', cars=cars)
 
 @app.route("/car/<int:car_id>")
-# @customer_required
+@customer_required
 def view_car(car_id):
     cursor.execute("SELECT * FROM Cars WHERE Car_ID = %s", (car_id,))
     car = cursor.fetchone()
@@ -148,8 +155,7 @@ def book_testdrive(car_id):
 def confirm_booking(car_id):
     date = request.form.get("date")
     time = request.form.get("time")
-    user_id = session.get("user_id")  # Assuming the logged-in user's ID is stored in session
-
+    user_id = session.get("user_id")  
     if not user_id:
         return "You must be logged in to book a test drive.", 401
 
@@ -207,7 +213,7 @@ def confirm_purchase(car_id):
 @login_required
 def request_service():
     cursor.execute("SELECT Car_ID, Brand, Model, Fuel_Type, Transmission FROM Cars")
-    cars = cursor.fetchall()  # list of dicts
+    cars = cursor.fetchall()  
     
     return render_template("request_service.html", cars=cars)
 
@@ -387,22 +393,18 @@ def manage_showrooms():
     for s in showrooms:
         showroom_id = s["Showroom_ID"]
 
-        # total cars
         cursor.execute("SELECT COUNT(*) as total FROM cars WHERE Showroom_ID = %s", (showroom_id,))
         total_cars = cursor.fetchone()["total"]
 
-        # total orders
         cursor.execute("SELECT COUNT(*) as total FROM sales WHERE Car_ID IN (SELECT Car_ID FROM cars WHERE Showroom_ID = %s)", (showroom_id,))
         total_orders = cursor.fetchone()["total"]
 
-        # pending service
         cursor.execute("""
             SELECT COUNT(*) as total FROM service_requests 
             WHERE Status = 'Pending' AND Car_ID IN (SELECT Car_ID FROM cars WHERE Showroom_ID = %s)
         """, (showroom_id,))
         pending_services = cursor.fetchone()["total"]
 
-        # revenue
         cursor.execute("""
             SELECT COALESCE(SUM(Amount), 0) as revenue FROM sales 
             WHERE Car_ID IN (SELECT Car_ID FROM cars WHERE Showroom_ID = %s)
