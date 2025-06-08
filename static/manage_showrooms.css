@@ -1,84 +1,199 @@
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f6f9;
+/* Reset and Base */
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #1f1c2c, #928dab);
+    color: #ffffff;
+    min-height: 100vh;
+    background-size: cover;
+    background-attachment: fixed;
+    overflow-x: hidden;
+}
+
+/* Navbar */
 .navbar {
-    background-color: #2c3e50;
-    color: white;
-    padding: 20px;
+    background: rgba(15, 15, 30, 0.85);
+    backdrop-filter: blur(10px);
+    padding: 25px 50px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .navbar h1 {
-    margin: 0;
-    font-size: 24px;
+    font-size: 26px;
+    font-weight: 700;
+    color: #00ffe7;
 }
 
 .nav-links a {
-    color: white;
+    color: #ffffff;
     text-decoration: none;
-    margin-left: 20px;
-    font-weight: bold;
+    margin-left: 25px;
+    font-weight: 600;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background-color: #00ffe7;
+    transition: width 0.3s ease;
 }
 
 .nav-links a:hover {
-    text-decoration: underline;
+    color: #00ffe7;
 }
 
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* Container */
 .container {
-    max-width: 1200px;
-    margin: 30px auto;
-    background: white;
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 40px 60px;
 }
 
-h2 {
-    margin-bottom: 20px;
-    color: #2c3e50;
+.container h2 {
+    font-size: 22px;
+    margin: 40px 0 20px;
+    color: #00ffe7;
 }
 
+/* Table Styling */
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 10px;
-}
-
-table, th, td {
-    border: 1px solid #ddd;
+    margin-bottom: 50px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
 }
 
 th, td {
+    padding: 16px;
     text-align: center;
-    padding: 12px;
+    color: #ffffff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 th {
-    background-color: #34495e;
+    background: rgba(0, 0, 0, 0.3);
+    font-weight: bold;
+    color: #00ffe7;
+}
+
+td button {
+    background: #e74c3c;
     color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
 }
 
-tr:nth-child(even) {
-    background-color: #f2f2f2;
+td button:hover {
+    background: #c0392b;
 }
 
+/* Form Styling */
+form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    background: rgba(255, 255, 255, 0.04);
+    padding: 30px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    margin-bottom: 40px;
+}
+
+form input {
+    flex: 1 1 30%;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    outline: none;
+}
+
+form input::placeholder {
+    color: #ccc;
+}
+
+form button {
+    flex: 1 1 20%;
+    background: #00ffe7;
+    color: #000;
+    font-weight: 700;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+form button:hover {
+    background: #00e0c0;
+}
+
+/* Back Button */
 .back-btn {
     display: inline-block;
-    margin-top: 20px;
-    padding: 10px 18px;
-    background-color: #2980b9;
+    background: #3498db;
     color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
     text-decoration: none;
-    border-radius: 6px;
     font-weight: bold;
+    transition: background 0.3s ease;
 }
 
 .back-btn:hover {
-    background-color: #1c6ea4;
+    background: #2980b9;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px;
+    }
+
+    .nav-links {
+        margin-top: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .container {
+        padding: 30px 20px;
+    }
+
+    table, form {
+        font-size: 14px;
+    }
+
+    form input, form button {
+        flex: 1 1 100%;
+    }
 }

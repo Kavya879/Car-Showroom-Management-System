@@ -2,16 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Customer Home - AutoDealership</title>
+  <title>Namma Motors - Car Listings</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="{{ url_for('static', filename='customer_home.css') }}">
 </head>
 <body>
-  <!-- Navbar -->
+
   <nav class="navbar">
-    <div class="logo">AutoDealership</div>
+    <div class="logo">Welcome To Namma Motors</div>
     <div class="nav-links">
       <a href="#">Home</a>
       <a href="/my_activity">My Activity</a>
@@ -20,40 +20,61 @@
     </div>
   </nav>
 
-  <!-- Hero Section -->
   <header class="hero">
     <h1>Find Your Dream Car</h1>
     <p>Explore our extensive collection of premium vehicles</p>
   </header>
 
-
-<!-- Car Listings -->
-<section class="car-listings">
-  <h2>Available Cars</h2>
-  <div class="car-list">
-    {% if cars %}
-      {% for car in cars %}
-        <div class="car-item card">
-          <div class="image">
-            <img 
-              src="https://source.unsplash.com/400x300/?{{ car.Brand }}-{{ car.Name }}-car" 
-              alt="{{ car.Brand }} {{ car.Name }}" 
-              class="car-img"
-            />
+  <section class="car-listings">
+    <h2>Available Cars</h2>
+    <div class="car-list">
+      {% if cars %}
+        {% for car in cars %}
+          <div class="car-item card">
+            <div class="image">
+              {% set car_images = [
+                'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=400&h=300&fit=crop',
+                'https://images.unsplash.com/photo-1502877338535-766e1452684a?w=400&h=300&fit=crop',
+                'https://images.unsplash.com/photo-1549399344-cbb6c5c0cc9e?w=400&h=300&fit=crop',
+                'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=400&h=300&fit=crop',
+                'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=400&h=300&fit=crop',
+                'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=400&h=300&fit=crop',
+                'https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=400&h=300&fit=crop',
+                'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=400&h=300&fit=crop',
+                'https://images.unsplash.com/photo-1619405399517-d7fce0f13302?w=400&h=300&fit=crop',
+                'https://images.unsplash.com/photo-1605559424843-9e4c228b75ab?w=400&h=300&fit=crop',
+                'https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=400&h=300&fit=crop',
+                'https://images.unsplash.com/photo-1617788138017-80ad40651399?w=400&h=300&fit=crop',
+                'https://images.unsplash.com/photo-1542362567-b07e54358753?w=400&h=300&fit=crop',
+                'https://images.unsplash.com/photo-1571607388263-1044f9ea01dd?w=400&h=300&fit=crop',
+                'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop',
+                'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?w=400&h=300&fit=crop',
+                'https://images.unsplash.com/photo-1556988374-7c4421701e90?w=400&h=300&fit=crop',
+                'https://images.unsplash.com/photo-1569243465334-c4abaee0b5b8?w=400&h=300&fit=crop',
+                'https://images.unsplash.com/photo-1566473965997-3de9c817e938?w=400&h=300&fit=crop',
+                'https://images.unsplash.com/photo-1604780977103-7dd79e6c0456?w=400&h=300&fit=crop'
+              ] %}
+              <img 
+                src="{{ car_images[loop.index0 % car_images|length] }}" 
+                alt="{{ car.Brand }} {{ car.Name }}" 
+                class="car-img"
+                onerror="this.src='https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=400&h=300&fit=crop'"
+              />
+            </div>
+            <h3>{{ car.Brand }} {{ car.Name }}</h3>
+            <p>₹{{ "{:,.2f}".format(car.Price) }}</p>
+            <p>{{ car.Model }} | {{ car.Mileage if car.Mileage else 'N/A' }} miles</p>
+            <p><strong>Fuel Type:</strong> {{ car.Fuel_Type }}</p>
+            <p><strong>Transmission:</strong> {{ car.Transmission }}</p>
+            <p><strong>Stock Available:</strong> {{ car.Stock }}</p>
+            <a href="{{ url_for('view_car', car_id=car.Car_ID) }}" class="btn">View Details</a>
           </div>
-          <h3>{{ car.Brand }} {{ car.Name }}</h3>
-          <p>₹{{ "{:,.2f}".format(car.Price) }}</p>
-          <p>{{ car.Model }} | {{ car.Mileage if car.Mileage else 'N/A' }} miles</p>
-          <p><strong>Fuel Type:</strong> {{ car.Fuel_Type }}</p>
-          <p><strong>Transmission:</strong> {{ car.Transmission }}</p>
-          <p><strong>Stock Available:</strong> {{ car.Stock }}</p>
-        <a href="{{ url_for('view_car', car_id=car.Car_ID) }}" class="btn">View Details</a>
-        </div>
-      {% endfor %}
-    {% else %}
-      <p>No cars available currently.</p>
-    {% endif %}
-  </div>
+        {% endfor %}
+      {% else %}
+        <p>No cars available currently.</p>
+      {% endif %}
+    </div>
+  </section>
 
-
-</section>
+</body>
+</html>

@@ -1,31 +1,43 @@
-body {
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #eef2f3;
+/* Reset & Base */
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #111827;
+  color: #ffffff;
+  padding: 0 20px;
+  min-height: 100vh;
+}
+
+/* Heading */
 h2 {
   text-align: center;
   margin-top: 40px;
-  color: #2c3e50;
+  color: #00ffe7;
 }
 
+/* Form Container */
 .container {
   max-width: 600px;
   margin: 30px auto;
   padding: 30px;
-  background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 255, 231, 0.08);
 }
 
+/* Paragraph Text */
 p {
   font-size: 16px;
   margin: 10px 0;
-  color: #34495e;
+  color: #d1d5db;
 }
 
+/* Form & Labels */
 form {
   margin-top: 20px;
 }
@@ -33,45 +45,65 @@ form {
 label {
   display: block;
   font-weight: 500;
-  color: #2c3e50;
+  color: #00ffe7;
   margin-bottom: 8px;
 }
 
+/* Dropdown Select */
 select {
   width: 100%;
   padding: 10px;
   font-size: 1rem;
-  border-radius: 8px;
-  border: 1px solid #ccc;
+  border-radius: 10px;
+  border: 1px solid #444;
+  background-color: #1f2937;
+  color: #ffffff;
   margin-bottom: 20px;
-  box-sizing: border-box;
+  transition: border-color 0.3s ease;
 }
 
+select:focus {
+  outline: none;
+  border-color: #00ffe7;
+}
+
+/* Submit Button */
 button[type="submit"] {
   width: 100%;
-  background-color: #27ae60;
-  color: #fff;
+  background-color: #00ffe7;
+  color: #000;
   padding: 12px;
   font-size: 16px;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s;
 }
 
 button[type="submit"]:hover {
-  background-color: #219150;
+  background-color: #00e6d0;
+  transform: translateY(-2px);
 }
 
+/* Back Link */
 a {
   display: block;
   text-align: center;
   margin-top: 25px;
-  color: #2980b9;
+  color: #00ffe7;
   text-decoration: none;
   font-size: 16px;
 }
 
 a:hover {
   text-decoration: underline;
+  color: #00e6d0;
+}
+
+/* Responsive */
+@media screen and (max-width: 600px) {
+  .container {
+    padding: 20px;
+  }
 }

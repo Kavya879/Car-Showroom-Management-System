@@ -1,63 +1,97 @@
-body {
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #f9f9f9;
+/* Reset & Base Styles */
+* {
   margin: 0;
-  padding: 20px;
-  color: #333;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-h1 {
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #111827;
+  color: #ffffff;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+}
+
+/* Car Detail Container */
+.car-detail-container {
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 255, 231, 0.08);
+  max-width: 500px;
+  width: 100%;
+}
+
+/* Heading */
+.car-detail-container h1 {
+  font-size: 28px;
+  color: #00ffe7;
+  margin-bottom: 24px;
   text-align: center;
-  margin-bottom: 30px;
-  color: #2c3e50;
 }
 
-.car-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
+/* Car Info */
+.car-detail-container p {
+  font-size: 16px;
+  margin: 12px 0;
+  color: #d1d5db;
 }
 
-.car-card, .car-detail-container {
-  background: white;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease;
+/* Label Highlights */
+.car-detail-container p strong {
+  color: #ffffff;
 }
 
-.car-card:hover {
-  transform: translateY(-5px);
+/* Action Buttons */
+.action-buttons {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-.car-card h2 {
-  margin-top: 0;
-  color: #34495e;
-}
-
+/* Primary Button */
 .btn {
-  display: inline-block;
-  margin-top: 10px;
-  padding: 10px 15px;
-  background-color: #2980b9;
-  color: white;
+  padding: 12px 20px;
+  background-color: #00ffe7;
+  color: #000;
+  text-align: center;
   text-decoration: none;
-  border-radius: 6px;
-  transition: background-color 0.3s;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .btn:hover {
-  background-color: #1c5980;
+  background-color: #00e6d0;
+  transform: translateY(-2px);
 }
 
+/* Buy Button (Styled Same Theme) */
 .btn.buy {
-  background-color: #27ae60;
+  background-color: #00ffa0;
+  color: #000;
 }
 
 .btn.buy:hover {
-  background-color: #1e8449;
+  background-color: #00cc88;
 }
 
-.action-buttons {
-  margin-top: 20px;
+/* Responsive */
+@media (max-width: 600px) {
+  .car-detail-container {
+    padding: 20px;
+  }
+
+  .car-detail-container h1 {
+    font-size: 24px;
+  }
+
+  .btn {
+    padding: 10px;
+  }
 }

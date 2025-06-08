@@ -2,25 +2,41 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>My Dashboard</title>
+  <title>My Activity - AutoDealership</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="{{ url_for('static', filename='my_activity.css') }}">
 </head>
 <body>
-  <div class="dashboard-container">
 
-    <div class="top-bar">
-      <h1>MY DASHBOARD</h1>
-      <a href="/customer/home" class="back-btn">⬅️ Back</a>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">Namma Motors</div>
+    <div class="nav-links">
+      <a href="/customer/home">Home</a>
+      <a href="/request_service">Request Service</a>
+      <a href="/login" class="logout-button">Logout</a>
     </div>
+  </nav>
 
+  <!-- Dashboard Header -->
+  <header class="hero">
+    <h1>My Dashboard</h1>
+    <p>View and manage your activity below</p>
+  </header>
+
+  <main class="activity-container">
+
+    <!-- Test Drives -->
     <section class="card">
-      <h2>🚗 Test Drive Bookings</h2>
+      <h2>Test Drive Bookings</h2>
       {% if testdrives %}
         <ul>
           {% for t in testdrives %}
             <li>
               <strong>{{ t.Brand }} {{ t.Model }}</strong><br>
-              📅 {{ t.Booking_Date }} ⏰ {{ t.Booking_Time }}<br>
+              Date:{{ t.Booking_Date }} <br> Time:{{ t.Booking_Time }}<br>
               Status: <span class="status {{ t.Status|lower }}">{{ t.Status }}</span>
               <a href="/delete_testdrive/{{ t.Booking_ID }}" class="cancel-btn">❌ Cancel</a>
             </li>
@@ -31,15 +47,16 @@
       {% endif %}
     </section>
 
+    <!-- Service Requests -->
     <section class="card">
-      <h2>🔧 Service Requests</h2>
+      <h2> Service Requests</h2>
       {% if services %}
         <ul>
           {% for s in services %}
             <li>
               <strong>{{ s.Brand }} {{ s.Model }}</strong><br>
-              📅 {{ s.Request_Date }}<br>
-              🛠️ {{ s.Description }}<br>
+              Date: {{ s.Request_Date }}<br>
+              Description: {{ s.Description }}<br>
               Status: <span class="status {{ s.Status|lower }}">{{ s.Status }}</span>
               <a href="/delete_service/{{ s.Request_ID }}" class="cancel-btn">❌ Cancel</a>
             </li>
@@ -50,15 +67,16 @@
       {% endif %}
     </section>
 
+    <!-- Purchases -->
     <section class="card">
-      <h2>🛒 Cars Purchased</h2>
+      <h2> Cars Purchased</h2>
       {% if purchases %}
         <ul>
           {% for p in purchases %}
             <li>
               <strong>{{ p.Brand }} {{ p.Model }}</strong><br>
-              📅 {{ p.Sale_Date }}<br>
-              💳 {{ p.Payment_Mode }} — ₹{{ "{:,.2f}".format(p.Amount) }}
+              Date: {{ p.Sale_Date }}<br>
+              Mode of Payment: {{ p.Payment_Mode }} — ₹{{ "{:,.2f}".format(p.Amount) }}
               <a href="/delete_purchase/{{ p.Sale_ID }}" class="cancel-btn">❌ Remove</a>
             </li>
           {% endfor %}
@@ -68,6 +86,7 @@
       {% endif %}
     </section>
 
-  </div>
+  </main>
+
 </body>
 </html>

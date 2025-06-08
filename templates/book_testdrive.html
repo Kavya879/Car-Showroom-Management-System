@@ -28,12 +28,13 @@
       <input type="time" id="time" name="time" required>
 
       <button type="submit" class="btn">Confirm Booking</button>
+      <p></p>
     </form>
     {% else %}
     <p style="color: red; font-weight: bold;">Out of stock - Booking not available.</p>
     {% endif %}
 
-    <a href="/customer_home" class="btn back">Back to Home</a>
+    <a href="/customer/home" class="btn back">Back to Home</a>
   </div>
 </body>
 </html>
